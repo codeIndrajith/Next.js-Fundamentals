@@ -11,6 +11,7 @@ import { FaGoogle } from "react-icons/fa6";
 const Navbar = () => {
   const [isMobileMenuOpent, setMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setProfileMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const pathName = usePathname();
   return (
     <nav className='bg-blue-700 border-b border-blue-500'>
@@ -59,28 +60,33 @@ const Navbar = () => {
               <div className='flex space-x-2'>
                 <Link
                   href='/'
-                  className='text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2'
+                  className= {`${pathName ==='/' ? 'bg-black': ''} text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
                 >
                   Home
                 </Link>
                 <Link
                   href='/properties'
-                  className='text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2'
+                  className= {`${pathName ==='/properties' ? 'bg-black': ''} text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
                 >
                   Properties
                 </Link>
+                {isLoggedIn && (
                 <Link
                   href='properties/add'
-                  className='text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2'
+                  className= {`${pathName ==='/properties/add' ? 'bg-black': ''} text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
                 >
                   Add Property
                 </Link>
+                )}
               </div>
             </div>
           </div>
 
           {/* <!-- Right Side Menu (Logged Out) --> */}
-          <div className='hidden md:block md:ml-6'>
+          {
+            !isLoggedIn && (
+          
+          <div className='md:block md:ml-6'>
             <div className='flex items-center'>
               <button className='flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2'>
               <FaGoogle className='text-white mr-2'/>
@@ -88,8 +94,12 @@ const Navbar = () => {
               </button>
             </div>
           </div>
-
+        )}
           {/* <!-- Right Side Menu (Logged In) --> */}
+
+          {
+
+            isLoggedIn && (
           <div className='absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0'>
             <Link href='/messages' className='relative group'>
               <button
@@ -179,6 +189,7 @@ const Navbar = () => {
               )}
             </div>
           </div>
+        )}
         </div>
       </div>
 
@@ -189,26 +200,30 @@ const Navbar = () => {
         <div className='space-y-1 px-2 pb-3 pt-2'>
           <Link
             href='/'
-            className='bg-black text-white block rounded-md px-3 py-2 text-base font-medium'
+            className={`${pathName==='/' ? 'bg-black' : ''} text-white block rounded-md px-3 py-2 text-base font-medium`}
           >
             Home
           </Link>
           <Link
             href='/properties'
-            className='text-white block rounded-md px-3 py-2 text-base font-medium'
+            className={`${pathName==='/properties' ? 'bg-black' : ''} text-white block rounded-md px-3 py-2 text-base font-medium`}
           >
             Properties
           </Link>
+          {isLoggedIn && (
           <Link
             href='properties/add'
-            className='text-white block rounded-md px-3 py-2 text-base font-medium'
+            className={`${pathName==='/properties/add' ? 'bg-black' : ''} text-white block rounded-md px-3 py-2 text-base font-medium`}
           >
             Add Property
           </Link>
+          )}
+          {!isLoggedIn && (
           <button className='flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-4'>
             <i className='fa-brands fa-google mr-2'></i>
             <span>Login or Register</span>
           </button>
+          )}
         </div>
       </div>
 
