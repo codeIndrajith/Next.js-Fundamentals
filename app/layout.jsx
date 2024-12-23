@@ -1,6 +1,7 @@
 import '@/assets/style/global.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import AuthProvider from '@/components/AuthProvider';
 
 // Add meta data
 export const metadata = {
@@ -10,6 +11,7 @@ export const metadata = {
 }
 const MainLayout = ({children}) => {
     return (
+        <AuthProvider>
         <html>
             <body>
                 <main>
@@ -19,6 +21,7 @@ const MainLayout = ({children}) => {
                 </main>
             </body>
         </html>
+        </AuthProvider>
     )
 }
 
