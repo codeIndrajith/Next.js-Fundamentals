@@ -7,8 +7,11 @@ import Image from 'next/image';
 import logo from '@/assets/images/home.svg';
 import profileDefault from '@/assets/images/profile.svg';
 import { FaGoogle } from "react-icons/fa6";
+import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
 
 const Navbar = () => {
+  const {data: session}= useSession();
+  console.log(session)
   const [isMobileMenuOpent, setMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setProfileMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);

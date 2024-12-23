@@ -3,26 +3,23 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AuthProvider from '@/components/AuthProvider';
 
-// Add meta data
 export const metadata = {
-    title: "Next js Project",
+    title: "Next.js Project",
     keywords: "rental, property, real estate",
     description: "Find the perfect rental property",
-}
-const MainLayout = ({children}) => {
+};
+
+export default function MainLayout({ children }) {
     return (
-        <AuthProvider>
-        <html>
+        <html lang="en">
             <body>
-                <main>
+                {/* Wrap the entire app in AuthProvider */}
+                <AuthProvider>
                     <Navbar />
-                   {children}
-                   <Footer />
-                </main>
+                    <main>{children}</main>
+                    <Footer />
+                </AuthProvider>
             </body>
         </html>
-        </AuthProvider>
-    )
+    );
 }
-
-export default MainLayout;
