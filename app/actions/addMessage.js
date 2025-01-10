@@ -3,7 +3,7 @@ import connectDB from "@/config/database";
 import Message from "@/models/Message";
 import { getSesstionUser } from "@/utils/getSessionUser";
 
-async function addProperty(formData) {
+async function addProperty(previousState, formData) {
     await connectDB();
     const sessionUser = await getSesstionUser();
 
